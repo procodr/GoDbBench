@@ -1,0 +1,47 @@
+services:
+ 
+  pgdb:
+    image: postgres@sha256:1a6b23b8a62600f52995d164132266c7ef648905b7d6e63da43d63faa574e395
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example_test
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    ports:
+      - 54320:5432
+
+  mongodb:
+    image: mongo:6-jammy
+    restart: always
+    volumes:
+      - dbdata6:/data/db
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    ports:
+      - 27017:27017
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8090:8080
+ 
+volumes:
+  pgdata:
+  dbdata6:
+
+
