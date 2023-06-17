@@ -132,6 +132,15 @@ func main() {
 		return sqTest.Create(d)
 	})
 
+	app.Get("/pbTest/:id", func(c *fiber.Ctx) error {
+		id := c.Params("id")
+		err, val := pbTest.Get(id)
+		if err != nil {
+			return c.Status(503).SendString(err.Error())
+		}
+
+		return c.JSON(val)
+	})
 	app.Post("/pbTest", func(c *fiber.Ctx) error {
 		d := new(core.Data)
 		if err := c.BodyParser(d); err != nil {
