@@ -30,6 +30,10 @@ func openPgDB() (*sql.DB, error) {
 		return nil, err
 	}
 
+	// set connection limits to increase performance
+	db.SetMaxOpenConns(5)
+	db.SetMaxIdleConns(5)
+
 	q := `
 		CREATE TABLE IF NOT EXISTS data (c1 varchar, c2 varchar, c3 varchar);
 		TRUNCATE TABLE data;`

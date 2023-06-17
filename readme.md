@@ -38,12 +38,9 @@ Windows (using WRK docker image):
 
 ## 📇 Results
 
-| Database Engine | Result (req/sec) |
-|-----------------|------------------|
-| PostgreSQL      | 1144             |
-| MongoDB         | 3345             |
-| SQLite          | 3911             |
-| Pebble          | 600              |
-
-
-
+| Database Engine | Result (req/sec) [1 Thread - 5 Connections] | Result (req/sec) [100 Threads - 500 Connections] |
+|-----------------|:-------------------------------------------:|:------------------------------------------------:|
+| PostgreSQL      |                     1430                    |                       1501                       |
+| MongoDB         |                     3345                    |                       5695                       |
+| SQLite          |                     3911                    |                        841                       |
+| Pebble          |                     600                     |                       57050                      |
