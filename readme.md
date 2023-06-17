@@ -6,7 +6,7 @@
 
 Start database servers: `docker compose -f dbs.yaml up`
 
-Start API node: `go build && ./api`
+Start API node: `cd api && go build && ./api`
 
 ### 2️⃣ Run Benchmarks using WRK
 
