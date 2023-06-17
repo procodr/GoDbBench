@@ -10,13 +10,31 @@ Start API node: `cd api && go run .`
 
 ### 2️⃣ Run Benchmarks using WRK
 
-PostgreSQL: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/pgTest`
+Unix:
 
-MongoDB: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/mnTest`
+  - PostgreSQL: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/pgTest`
+  - MongoDB: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/mnTest`
+  - SQLite: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/sqTest`
+  - Pebble: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/pbTest`
 
-SQLite: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/sqTest`
+Windows (using WRK docker image):
 
-Pebble: `wrk -t1 -c5 -d10s --timeout 1 -s benchmark.lua http://127.0.0.1:3000/pbTest`
+  - PostgreSQL
+
+`docker run --rm --network=host -v $PWD/benchmark.lua:/benchmark.lua:ro williamyeh/wrk -t1 -c5 -d10s --timeout 1 -s /benchmark.lua http://host.docker.internal:3000/pgTest`
+
+  - MongoDB:
+ 
+`docker run --rm --network=host -v $PWD/benchmark.lua:/benchmark.lua:ro williamyeh/wrk -t1 -c5 -d10s --timeout 1 -s /benchmark.lua http://host.docker.internal:3000/mnTest`
+
+  - SQLite:
+
+`docker run --rm --network=host -v $PWD/benchmark.lua:/benchmark.lua:ro williamyeh/wrk -t1 -c5 -d10s --timeout 1 -s /benchmark.lua http://host.docker.internal:3000/sqTest`
+
+  - Pebble:
+
+`docker run --rm --network=host -v $PWD/benchmark.lua:/benchmark.lua:ro williamyeh/wrk -t1 -c5 -d10s --timeout 1 -s /benchmark.lua http://host.docker.internal:3000/pbTest`
+
 
 ## 📇 Results
 
